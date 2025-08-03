@@ -1,0 +1,9 @@
+services:
+  database:
+    image: postgres:17.5-alpine3.22
+    environment:
+      POSTGRES_USER: tasklist
+      POSTGRES_PASSWORD: tasklist
+      POSTGRES_DB: tasklist
+    ports:
+      - "5432:5432"
