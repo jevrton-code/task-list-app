@@ -16,16 +16,22 @@ import { Badge } from "../ui/badge";
 
 interface TaskProps {
   task: ITask;
+  onEdit: () => void;
 }
 
-const TaskCard: React.FC<TaskProps> = ({ task }) => (
+const TaskCard: React.FC<TaskProps> = ({ task, onEdit }) => (
   <Card>
     <CardHeader>
       <CardTitle>{task.title}</CardTitle>
       <CardDescription>{task.description}</CardDescription>
       <CardAction className="flex gap-2 items-center">
         <Switch checked={task.done} />
-        <Button variant="secondary" size="icon">
+        <Button
+          variant="secondary"
+          size="icon"
+          onClick={onEdit}
+          id="edit-task-button"
+        >
           <SquarePen />
         </Button>
       </CardAction>
@@ -33,7 +39,11 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => (
     <CardFooter>
       <div className="flex flex-wrap gap-2">
         {task.tags.map((tag, idx) => (
-          <Badge key={idx} variant="secondary" className="bg-blue-500 text-white">
+          <Badge
+            key={idx}
+            variant="secondary"
+            className="bg-blue-500 text-white"
+          >
             {tag}
           </Badge>
         ))}
